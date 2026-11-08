@@ -1,12 +1,12 @@
 :root {
-  --bg-page: #f8fafc;
-  --card-bg: #ffffff;
-  --border-color: #e2e8f0;
+  --bg-page: #bcd7f1;
+  --card-bg: #eee8df;
+  --border-color: #035435;
   --border-focus: #2563eb;
   --text-main: #0f172a;
   --text-muted: #64748b;
   --input-bg: #f8fafc;
-  --primary: #2563eb;
+  --primary: #55a4b0;
   --primary-hover: #1d4ed8;
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
   --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
