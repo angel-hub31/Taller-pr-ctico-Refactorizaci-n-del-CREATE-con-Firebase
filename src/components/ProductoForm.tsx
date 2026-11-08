@@ -22,7 +22,7 @@ export function ProductoForm() {
 
             console.log("Producto creado con ID:", id);
 
-            // Limpiar inputs
+            // Limpiamos los inputs
             setNombre("");
             setPrecio("");
             setStock("");
