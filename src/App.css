@@ -1,33 +1,46 @@
 :root {
-  --bg-page: #bcd7f1;
-  --card-bg: #eee8df;
-  --border-color: #035435;
-  --text-main: #0f172a;
-  --input-bg: #f8fafc;
-  --primary: #55a4b0;
+    --bg-page: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --primary: #4f46e5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  background-color: var(--bg-page);
-  color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 #root {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.25rem;
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 20px;
 }
 
+/* CONTENEDOR EN DOS COLUMNAS FIJAS */
 .container {
-  width: 100%;
-  max-width: 960px;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
+    
+    display: grid;
+    grid-template-columns: 380px 1fr; /* Izquierda Formulario (380px), Derecha Tabla (todo el espacio restante) */
+    gap: 25px;
+    align-items: start;
+}
+
+/* Responsividad: Si la pantalla es menor a 1024px, pasa a una sola columna */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
 }

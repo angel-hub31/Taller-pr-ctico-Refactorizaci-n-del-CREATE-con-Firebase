@@ -1,76 +1,98 @@
+
 .card {
     width: 100%;
-    max-width: 440px;
-    background-color: var(--card-bg, #eee8df);
-    border: 1px solid var(--border-color, #035435);
-    border-radius: 1rem;
-    padding: 2.25rem 2rem;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+    max-width: 480px;
+    margin: 30px auto;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #e8eaf0;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+    box-sizing: border-box;
 }
 
 .title {
-    font-size: 1.5rem;
+    margin: 0 0 28px;
+    color: #172033;
+    font-size: 25px;
     font-weight: 700;
-    color: var(--text-main, #0f172a);
+    letter-spacing: -0.8px;
     text-align: center;
-    margin-bottom: 1.75rem;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 20px;
 }
 
 .input-field {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 8px;
 }
 
 .input-field label {
-    font-size: 0.85rem;
+    color: #374151;
+    font-size: 14px;
     font-weight: 600;
-    color: #334155;
 }
 
 .input-field input {
     width: 100%;
-    padding: 0.75rem 0.9rem;
-    background-color: var(--input-bg, #f8fafc);
-    border: 1px solid var(--border-color, #035435);
-    border-radius: 0.5rem;
-    font-size: 0.95rem;
-    color: var(--text-main, #0f172a);
+    padding: 13px 15px;
+    border: 1px solid #dfe3eb;
+    border-radius: 10px;
+    background: #f9fafc;
+    color: #172033;
+    font-size: 14px;
     outline: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input-field input::placeholder {
+    color: #a0a7b4;
 }
 
 .input-field input:focus {
-    background-color: #ffffff;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: #6366f1;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
 .btn-submit {
-    margin-top: 0.5rem;
     width: 100%;
-    padding: 0.85rem 1rem;
-    background-color: var(--primary, #55a4b0);
-    color: #ffffff;
+    padding: 14px;
+    margin-top: 8px;
     border: none;
-    border-radius: 0.5rem;
-    font-size: 0.95rem;
+    border-radius: 10px;
+    background: #4f46e5;
+    color: #ffffff;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.15s ease-in-out;
+    transition: all 0.2s ease;
 }
 
 .btn-submit:hover:not(:disabled) {
-    background-color: #1d4ed8;
+    background: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
 }
 
 .btn-submit:disabled {
-    background-color: #94a3b8;
+    opacity: 0.6;
     cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 24px 20px;
+        margin: 20px auto;
+    }
+
+    .title {
+        font-size: 22px;
+    }
 }
