@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { crearProducto } from "../services/productoService";
-import "../App.css"
+import "./productoForm.css"
 
 export function ProductoForm() {
     const [nombre, setNombre] = useState("");

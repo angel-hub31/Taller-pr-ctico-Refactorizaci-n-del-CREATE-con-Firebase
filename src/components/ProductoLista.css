@@ -1,0 +1,51 @@
+.lista-container {
+    width: 100%;
+    max-width: 440px;
+    background-color: var(--card-bg, #eee8df);
+    border: 1px solid var(--border-color, #035435);
+    border-radius: 1rem;
+    padding: 2.25rem 2rem;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+}
+
+.lista-container h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-main, #0f172a);
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+.producto-item {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.producto-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-color, #035435);
+}
+
+.producto-item h3 {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-family: monospace;
+    margin-bottom: 0.25rem;
+}
+
+.producto-item p {
+    font-size: 0.95rem;
+    color: var(--text-main, #0f172a);
+    margin: 0.15rem 0;
+}
+
+.producto-nombre {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 1.05rem !important;
+}

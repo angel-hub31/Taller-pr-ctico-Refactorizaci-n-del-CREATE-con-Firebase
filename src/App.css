@@ -2,31 +2,19 @@
   --bg-page: #bcd7f1;
   --card-bg: #eee8df;
   --border-color: #035435;
-  --border-focus: #2563eb;
   --text-main: #0f172a;
-  --text-muted: #64748b;
   --input-bg: #f8fafc;
   --primary: #55a4b0;
-  --primary-hover: #1d4ed8;
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
   min-height: 100vh;
   background-color: var(--bg-page);
   color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
 }
 
-/* Contenedor central flexible */
 #root {
   min-height: 100vh;
   display: flex;
@@ -37,134 +25,9 @@ body {
 
 .container {
   width: 100%;
-  max-width: 440px;
+  max-width: 960px;
   display: flex;
   justify-content: center;
-}
-
-/* Tarjeta minimalista */
-.card {
-  width: 100%;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 1rem;
-  padding: 2.25rem 2rem;
-  box-shadow: var(--shadow-card);
-}
-
-/* Tipografía */
-.title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-main);
-  text-align: center;
-  letter-spacing: -0.025em;
-  margin-bottom: 0.35rem;
-}
-
-.subtitle {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin-bottom: 1.75rem;
-}
-
-/* Formulario */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.input-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.input-field label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #334155;
-}
-
-.input-field input {
-  width: 100%;
-  padding: 0.75rem 0.9rem;
-  background-color: var(--input-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  font-size: 0.95rem;
-  color: var(--text-main);
-  outline: none;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease-in-out;
-}
-
-.input-field input::placeholder {
-  color: #94a3b8;
-}
-
-.input-field input:focus {
-  background-color: #ffffff;
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-/* Eliminar flechas de inputs numéricos */
-.input-field input[type="number"]::-webkit-outer-spin-button,
-.input-field input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.input-field input[type="number"] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-
-/* Botón interactivo */
-.btn-submit {
-  margin-top: 0.5rem;
-  width: 100%;
-  padding: 0.85rem 1rem;
-  background-color: var(--primary);
-  color: #ffffff;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
-  transition: all 0.15s ease-in-out;
-}
-
-.btn-submit:hover:not(:disabled) {
-  background-color: var(--primary-hover);
-  box-shadow: 0 6px 12px -2px rgba(37, 99, 235, 0.3);
-}
-
-.btn-submit:active:not(:disabled) {
-  transform: translateY(1px);
-}
-
-.btn-submit:disabled {
-  background-color: #94a3b8;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* Responsividad para móviles pequeños */
-@media (max-width: 480px) {
-  #root {
-    padding: 0.75rem;
-  }
-
-  .card {
-    padding: 1.75rem 1.25rem;
-    border-radius: 0.75rem;
-  }
-
-  .title {
-    font-size: 1.35rem;
-  }
+  gap: 2rem;
+  flex-wrap: wrap;
 }
