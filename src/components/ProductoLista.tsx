@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
-import { obtenerProductos, type Producto } from "../services/productoService";
+import { obtenerProductos, eliminarProducto, type Producto } from "../services/productoService";
 import "./ProductoLista.css";
 
 interface Props {
+    productos: Producto[];
+    setProductos: React.Dispatch<React.SetStateAction<Producto[]>>
     onEditar: (producto: Producto) => void;
 }
 
-export const ProductoLista = ({ onEditar }: Props) => {
-    const [productos, setProductos] = useState<Producto[]>([]);
+export const ProductoLista = ({ productos, setProductos,onEditar }: Props) => {
 
-    useEffect(() => {
-        const cargarProductos = async () => {
-            try {
-                const datos = await obtenerProductos();
-                setProductos(datos);
-            } catch (error) {
-                console.error("Error al obtener productos: ", error);
-            }
-        };
-        cargarProductos();
-    }, []);
+   
+
+    const handleEliminar = async (id: string) => {
+        if (!window.confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+            return;
+        }
+        
+        try {
+            await eliminarProducto(id);
+            setProductos(productos.filter((p) => p.id !== id));
+            alert("Producto eliminado correctamente")
+
+        } catch (error) {
+            console.log("Error: " + error)
+
+        }
+    }
 
     return (
         <div className="lista-container">
@@ -58,11 +65,13 @@ export const ProductoLista = ({ onEditar }: Props) => {
                                     <span className="stock-badge">{producto.stock} un.</span>
                                 </td>
                                 <td style={{ textAlign: "right" }}>
-                                    <button 
-                                        className="btn-accion" 
-                                        onClick={() => onEditar(producto)}
-                                    >
-                                        Editar
+                                    <button
+                                        className="btn-accion"
+                                        onClick={() => onEditar(producto)}>Editar
+                                    </button>
+                                    <button
+                                        className="btn-accion"
+                                        onClick={() => handleEliminar(producto.id)}>Eliminar
                                     </button>
                                 </td>
                             </tr>

@@ -4,9 +4,10 @@ import "./productoForm.css";
 
 interface Props {
     productoEditar: Producto | null;
+    onGuardado: ()=>void;
 }
 
-export function ProductoForm({ productoEditar }: Props) {
+export function ProductoForm({ productoEditar, onGuardado}: Props) {
     const [nombre, setNombre] = useState(productoEditar?.nombre ?? "");
     const [precio, setPrecio] = useState(productoEditar?.precio.toString() ?? "");
     const [stock, setStock] = useState(productoEditar?.stock.toString() ?? "");
@@ -43,6 +44,8 @@ export function ProductoForm({ productoEditar }: Props) {
                 setPrecio("");
                 setStock("");
             }
+
+            onGuardado();
         } catch (error) {
             console.error("Error al registrar:", error);
         } finally {
