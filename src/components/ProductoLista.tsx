@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import { obtenerProductos, type Producto } from "../services/productoService";
-import "./ProductoLista.css"
+import "./ProductoLista.css";
 
-export const ProductoLista = () => {
+interface Props {
+    onEditar: (producto: Producto) => void;
+}
+
+export const ProductoLista = ({ onEditar }: Props) => {
     const [productos, setProductos] = useState<Producto[]>([]);
 
     useEffect(() => {
         const cargarProductos = async () => {
             try {
                 const datos = await obtenerProductos();
-                setProductos(datos)
-
+                setProductos(datos);
             } catch (error) {
                 console.error("Error al obtener productos: ", error);
-
             }
-        }
+        };
         cargarProductos();
+    }, []);
 
-    }, [])
     return (
-
         <div className="lista-container">
             <div>
                 <h1>LISTA DE PRODUCTOS</h1>
@@ -57,7 +58,12 @@ export const ProductoLista = () => {
                                     <span className="stock-badge">{producto.stock} un.</span>
                                 </td>
                                 <td style={{ textAlign: "right" }}>
-                                    <button className="btn-accion">Editar</button>
+                                    <button 
+                                        className="btn-accion" 
+                                        onClick={() => onEditar(producto)}
+                                    >
+                                        Editar
+                                    </button>
                                 </td>
                             </tr>
                         ))}

@@ -1,31 +1,48 @@
 import { useState, type FormEvent } from "react";
-import { crearProducto } from "../services/productoService";
-import "./productoForm.css"
+import { crearProducto, actualizarProducto, type Producto } from "../services/productoService";
+import "./productoForm.css";
 
-export function ProductoForm() {
-    const [nombre, setNombre] = useState("");
-    const [precio, setPrecio] = useState("");
-    const [stock, setStock] = useState("");
+interface Props {
+    productoEditar: Producto | null;
+}
+
+export function ProductoForm({ productoEditar }: Props) {
+    const [nombre, setNombre] = useState(productoEditar?.nombre ?? "");
+    const [precio, setPrecio] = useState(productoEditar?.precio.toString() ?? "");
+    const [stock, setStock] = useState(productoEditar?.stock.toString() ?? "");
     const [cargando, setCargando] = useState(false);
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const guardarProducto = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (cargando) return;
 
         setCargando(true);
         try {
-            const id = await crearProducto({
-                nombre: nombre.trim(),
-                precio: Number(precio),
-                stock: Number(stock),
-            });
+            if (productoEditar) {
+                await actualizarProducto(
+                    productoEditar.id,
+                    nombre.trim(),
+                    Number(precio),
+                    Number(stock)
+                );
+                console.log("Producto actualizado");
 
-            console.log("Producto creado con ID:", id);
+                alert("Producto actualizado corrrectamente");
+            } else {
+                const id = await crearProducto({
+                    nombre: nombre.trim(),
+                    precio: Number(precio),
+                    stock: Number(stock),
+                });
+                console.log("Producto creado con ID:", id);
+                alert("Producto creado exitosamente");
 
-            // Limpiamos los inputs
-            setNombre("");
-            setPrecio("");
-            setStock("");
+
+                // Limpiamos los inputs
+                setNombre("");
+                setPrecio("");
+                setStock("");
+            }
         } catch (error) {
             console.error("Error al registrar:", error);
         } finally {
@@ -35,9 +52,11 @@ export function ProductoForm() {
 
     return (
         <div className="card">
-            <h1 className="title">Registro de productos</h1>
+            <h1 className="title">
+                {productoEditar ? "Editar producto" : "Registro de productos"}
+            </h1>
 
-            <form className="form-group" onSubmit={handleSubmit}>
+            <form className="form-group" onSubmit={guardarProducto}>
                 <div className="input-field">
                     <label htmlFor="nombre">Nombre</label>
                     <input
@@ -78,7 +97,7 @@ export function ProductoForm() {
                 </div>
 
                 <button className="btn-submit" type="submit" disabled={cargando}>
-                    {cargando ? "Guardando..." : "Guardar producto"}
+                    {cargando ? "Guardando..." : productoEditar ? "Actualizar" : "Guardar"}
                 </button>
             </form>
         </div>
