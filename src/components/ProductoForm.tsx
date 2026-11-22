@@ -198,7 +198,7 @@ export function ProductoForm({ productoEditar, onGuardado }: Props) {
                         ? "Guardando..."
                         : productoEditar
                             ? "Guardar cambios"
-                            : "+ Registrar producto"}
+                            : "Registrar producto"}
 
                 </button>
 
