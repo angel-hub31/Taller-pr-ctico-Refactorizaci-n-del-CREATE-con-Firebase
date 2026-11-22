@@ -1,14 +1,6 @@
 
 // Funciones para manipular documentos y colecciones
-import {
-    collection,
-    addDoc,
-    getDocs,
-    updateDoc,
-    doc,
-    deleteDoc,
-    onSnapshot
-} from "firebase/firestore";
+import {collection,addDoc,getDocs,updateDoc,doc,deleteDoc,onSnapshot} from "firebase/firestore";
 
 // Instancia configurada de la base de datos Firestore
 import { db } from "../firebase";
