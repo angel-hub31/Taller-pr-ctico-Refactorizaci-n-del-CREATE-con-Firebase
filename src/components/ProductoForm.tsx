@@ -171,8 +171,6 @@ export function ProductoForm({ productoEditar, onGuardado }: Props) {
 
                 </div>
 
-                {/* CATEGORÍA */}
-
                 <div className="input-field">
 
                     <label htmlFor="categoria">
@@ -189,8 +187,6 @@ export function ProductoForm({ productoEditar, onGuardado }: Props) {
                     />
 
                 </div>
-
-                {/* BOTÓN */}
 
                 <button
                     className="btn-submit"

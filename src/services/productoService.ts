@@ -21,7 +21,6 @@ export interface Producto {
     stock: number;
     categoria: string;
 }
-
 // Crea un nuevo documento en la colección "productos"
 export const crearProducto = async (producto: Omit<Producto, "id">) => {
 
@@ -99,7 +98,6 @@ export const actualizarProducto = async (
     });
 
 };
-
 // Elimina un producto existente
 export const eliminarProducto = async (id: string) => {
 

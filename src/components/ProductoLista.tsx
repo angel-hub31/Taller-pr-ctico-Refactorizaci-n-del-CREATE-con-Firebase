@@ -149,7 +149,6 @@ export const ProductoLista = ({
                                         Editar
                                     </button>
 
-                                    {/* Botón para eliminar */}
                                     <button
                                         className="btn-accion"
                                         onClick={() => handleEliminar(producto.id)}
