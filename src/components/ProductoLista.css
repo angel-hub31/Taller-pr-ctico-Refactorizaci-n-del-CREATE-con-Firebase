@@ -1,104 +1,190 @@
+/* CONTENEDOR DE LA LISTA */
+
 .lista-container {
+    min-width: 0;
     width: 100%;
     background: #ffffff;
-    border: 1px solid #e8eaf0;
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
+    padding: 27px;
+    border: 1px solid #e2e8f0;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+    box-sizing: border-box;
 }
+
+.lista-container h1 {
+    color: #172554;
+    font-size: 20px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+    margin: 0 0 23px;
+}
+
+/* ENCABEZADO DE LA TABLA */
 
 .lista-header-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.lista-container h2 {
-    font-size: 1.35px;
-    font-weight: 700;
-    color: #172033;
+    justify-content: space-between;
+    margin-bottom: 17px;
 }
 
 .badge-count {
-    background: #f1f5f9;
-    color: #475569;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 4px 10px;
+    padding: 7px 12px;
+    background: #eff6ff;
+    color: #1d4ed8;
     border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
-/* Tabla limpia y estructurada */
+/* TABLA */
+
 .tabla-productos {
     width: 100%;
-    border-collapse: collapse;
-}
-
-.tabla-productos th {
+    border-collapse: separate;
+    border-spacing: 0;
     text-align: left;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 12px 10px;
-    border-bottom: 2px solid #f1f5f9;
+    font-size: 13px;
 }
 
-.tabla-productos td {
-    padding: 14px 10px;
-    border-bottom: 1px solid #f8fafc;
-    vertical-align: middle;
-}
-
-.tabla-productos tr:hover {
-    background-color: #fafafa;
-}
-
-.producto-nombre-td {
-    font-weight: 600;
-    color: #172033;
-    font-size: 0.95rem;
-}
-
-.producto-id-sub {
-    font-size: 0.7rem;
-    color: #94a3b8;
-    font-family: monospace;
-    margin-top: 2px;
-}
-
-.stock-badge {
-    display: inline-block;
-    padding: 3px 8px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    color: #334155;
-}
-
-.btn-accion {
-    background: #f1f5f9;
-    border: none;
-    color: #4f46e5;
-    font-weight: 600;
-    font-size: 0.8rem;
-    cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: all 0.2s;
-}
-
-.btn-accion:hover {
-    background: #4f46e5;
+.tabla-productos thead {
+    background: #172554;
     color: #ffffff;
 }
 
+.tabla-productos th {
+    padding: 15px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tabla-productos th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.tabla-productos th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+.tabla-productos td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    color: #475569;
+    vertical-align: middle;
+}
+
+.tabla-productos tbody tr {
+    transition: background 0.2s ease;
+}
+
+.tabla-productos tbody tr:hover {
+    background: #f8fafc;
+}
+
+.tabla-productos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Corrección aquí: NOMBRE DEL PRODUCTO */
+
+.producto-nombre-td {
+    color: #172554;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Corrección aquí: ID DEL PRODUCTO */
+
+.producto-id-sub {
+    display: inline-block;
+    max-width: 140px;
+    color: #060606;
+    font-size: 11px;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+/* CATEGORÍA */
+
+.producto-categoria-td {
+    display: inline-block;
+    padding: 6px 10px;
+    background: #f1f5f9;
+    color: #000307;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 650;
+}
+
+/* STOCK */
+
+.stock-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    background: #ecfdf5;
+    color: #047857;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* BOTONES DE ACCIONES */
+
+.btn-accion {
+    padding: 8px 12px;
+    margin: 2px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tabla-productos td:last-child .btn-accion:first-child {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #dbeafe;
+}
+
+.tabla-productos td:last-child .btn-accion:first-child:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.tabla-productos td:last-child .btn-accion:last-child {
+    background: #fff1f2;
+    color: #be123c;
+    border-color: #ffe4e6;
+}
+
+.tabla-productos td:last-child .btn-accion:last-child:hover {
+    background: #e11d48;
+    color: #ffffff;
+}
+
+/* MENSAJE INFERIOR */
+
 .lista-footer-note {
-    font-size: 0.75rem;
-    color: #a0a7b4;
-    text-align: center;
-    margin-top: 20px;
+    margin: 18px 0 0;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .lista-container {
+        padding: 17px;
+    }
+
+    .tabla-productos {
+        min-width: 680px;
+    }
 }
