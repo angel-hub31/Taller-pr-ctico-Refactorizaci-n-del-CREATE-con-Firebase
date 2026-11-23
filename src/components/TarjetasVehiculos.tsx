@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaCar, FaCarSide, FaCarAlt, FaTruckPickup } from "react-icons/fa";
 import { consulta1, consulta2, consulta3, consulta4, obtenerVehiculos, type Vehiculo } from "../../scripts/consultaVehiculos";
-
+import "./TarjetasVehiculos.css"
 
 function TarjetasVehiculos() {
 
@@ -92,16 +92,14 @@ function TarjetasVehiculos() {
             {/* ===== CABECERA ===== */}
             <header className="vh-cabecera">
                 <h1>Inventario de vehículos</h1>
-                <p>Elige una consulta y mira qué devuelve Firestore.</p>
             </header>
 
-            {/* ===== SELECTOR DE CONSULTAS ===== */}
             <nav className="vh-filtros" aria-label="Consultas">
                 <button type="button" className={claseFiltro(0)} onClick={() => ejecutarConsulta(obtenerVehiculos, 0)}>Ver todos</button>
                 <button type="button" className={claseFiltro(1)} onClick={() => ejecutarConsulta(consulta1, 1)}>Consulta 1</button>
                 <button type="button" className={claseFiltro(2)} onClick={() => ejecutarConsulta(consulta2, 2)}>Consulta 2</button>
                 <button type="button" className={claseFiltro(3)} onClick={() => ejecutarConsulta(consulta3, 3)}>Consulta 3</button>
-                <button type="button" className={claseFiltro(4)} onClick={() => ejecutarConsulta(consulta3, 4)}>Consulta 4</button>
+                <button type="button" className={claseFiltro(4)} onClick={() => ejecutarConsulta(consulta4, 4)}>Consulta 4</button>
 
             </nav>
 
@@ -111,7 +109,6 @@ function TarjetasVehiculos() {
                 {mostrarDetalleConsulta()}
             </section>
 
-            {/* ===== RESULTADOS ===== */}
             <p className="vh-total">Total de vehículos: <strong>{vehiculos.length}</strong></p>
 
             {vehiculos.length === 0 && (
