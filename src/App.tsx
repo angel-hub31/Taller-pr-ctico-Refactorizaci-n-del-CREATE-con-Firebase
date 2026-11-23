@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ProductoForm } from "./components/ProductoForm";
 import { ProductoLista } from "./components/ProductoLista";
-import type { Producto } from "./services/productoService";
+import { obtenerProductosDisponibles, type Producto } from "./services/productoService";
 import "./App.css";
 
 function App() {
@@ -50,6 +50,11 @@ function App() {
             setProductos={setProductos}
             onEditar={handleEditar}
           />
+
+          <button onClick={async()=>{
+            const productoDeConsulta = await obtenerProductosDisponibles();
+            console.log(productoDeConsulta)
+          }}>Consulta</button>
 
         </div>
 

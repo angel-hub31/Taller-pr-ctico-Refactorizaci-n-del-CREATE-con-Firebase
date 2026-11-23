@@ -1,9 +1,8 @@
 
 // Funciones para manipular documentos y colecciones
-import {collection,addDoc,getDocs,updateDoc,doc,deleteDoc,onSnapshot} from "firebase/firestore";
+import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc, onSnapshot, query, where, orderBy, getDoc } from "firebase/firestore";
+import { db } from "../firebase";// Instancia configurada de la base de datos Firestore
 
-// Instancia configurada de la base de datos Firestore
-import { db } from "../firebase";
 
 // Interface que define la estructura de un producto
 export interface Producto {
@@ -98,3 +97,26 @@ export const eliminarProducto = async (id: string) => {
     await deleteDoc(productoRef);
 
 };
+
+export const obtenerProductosDisponibles = async (): Promise<Producto[]> => {
+
+    const consulta = query(
+        collection(db, "productos"),
+        where("stock", ">", 0),
+        where("precio", ">=", 100),
+        where("precio", "<=", 500),
+
+        orderBy("precio", "asc")
+    );
+
+    const querySnapshot = await getDocs(consulta);
+
+    const productos = querySnapshot.docs.map((documento) => ({
+        id: documento.id,
+        ...documento.data(),
+
+    })) as Producto[];
+    return productos;
+
+};
+
