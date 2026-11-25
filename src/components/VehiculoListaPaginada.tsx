@@ -92,9 +92,7 @@ function VehiculoListaPaginada() {
             <header className="tabla-header">
                 <div>
                     <h1>Inventario de Vehículos</h1>
-                    <p className="tabla-header__sub">
-                        Paginación directa en Cloud Firestore · Máx. 10 registros por vista
-                    </p>
+                    
                 </div>
                 <span className="tabla-badge">Página {pagina}</span>
             </header>
@@ -111,7 +109,6 @@ function VehiculoListaPaginada() {
                     <table className="tabla-datos">
                         <thead>
                             <tr>
-                                {/* [CAMBIO 1 - CABECERAS]: Antes tenías "Vehículo" y "Tipo". Cámbialas a "Marca" y "Modelo" */}
                                 <th>Marca</th>
                                 <th>Modelo</th>
                                 <th>Tipo</th>

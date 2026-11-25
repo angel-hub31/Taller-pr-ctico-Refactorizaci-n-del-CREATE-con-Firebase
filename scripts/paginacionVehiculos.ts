@@ -59,7 +59,6 @@ export const obtenerPrimeraPaginaVehiculos = async (): Promise<ResultadoPagina> 
     };
 };
 
-// Siguiente página: startAfter(ultimoDoc) + limit(10)
 export const obtenerSiguientePaginaVehiculos = async (
     ultimoDoc: QueryDocumentSnapshot<DocumentData>
 ): Promise<ResultadoPagina> => {
@@ -83,7 +82,6 @@ export const obtenerSiguientePaginaVehiculos = async (
     };
 };
 
-// Página anterior: endBefore(primerDoc) + limitToLast(10)
 export const obtenerPaginaAnteriorVehiculos = async (
     primerDoc: QueryDocumentSnapshot<DocumentData>
 ): Promise<ResultadoPagina> => {

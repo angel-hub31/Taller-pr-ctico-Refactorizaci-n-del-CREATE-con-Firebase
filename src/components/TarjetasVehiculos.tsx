@@ -86,7 +86,7 @@ function TarjetasVehiculos() {
             );
         }
 
-         if (detalleConsulta === 7) {
+        if (detalleConsulta === 7) {
             return (
                 <div className="detalle-consulta">
                     <h3>Consulta 7 — Reto</h3>
@@ -98,7 +98,6 @@ function TarjetasVehiculos() {
         return null;   // por si llega un número que no existe
     };
 
-    // SOLO PRESENTACIÓN: elige color e ícono según el tipo. No toca datos ni consultas.
     const estiloPorTipo = (tipo: string) => {
         if (tipo === "Sedan") return { clase: "vh-tipo--sedan", icono: <FaCarSide /> };
         if (tipo === "SUV") return { clase: "vh-tipo--suv", icono: <FaCar /> };
