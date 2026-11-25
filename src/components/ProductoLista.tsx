@@ -1,11 +1,7 @@
 
 import { useEffect } from "react";
 
-import {
-    escucharProductos,
-    eliminarProducto,
-    type Producto
-} from "../services/productoService";
+import {escucharProductos,eliminarProducto,type Producto} from "../services/productoService";
 
 import "./ProductoLista.css";
 
@@ -54,7 +50,8 @@ export const ProductoLista = ({
 
         } catch (error) {
 
-            console.log("Error: " + error);
+            console.log("Error al eliminar producto: " + error);
+            alert("No se pudo eliminar el producto");
 
         }
     };
@@ -68,17 +65,6 @@ export const ProductoLista = ({
 
             <div className="lista-header-row">
 
-                <div>
-                    <span
-                        style={{
-                            fontSize: "0.75rem",
-                            color: "#64748b",
-                            textTransform: "uppercase",
-                            fontWeight: 700,
-                            letterSpacing: "0.5px"
-                        }}
-                    ></span>
-                </div>
 
                 {/* Muestra la cantidad total de productos */}
                 <span className="badge-count">

@@ -94,6 +94,75 @@ export const consulta4 = async (): Promise<Vehiculo[]> => {
     return listaVehiculos;
 };
 
+export const consulta5 = async (): Promise<Vehiculo[]> => {
+    const consultaArmada = query(
+        collection(db, "vehiculos"),
+        where("tipo", "==", "Deportivo"),
+        where("stock", ">", 0),
+
+        orderBy("precio", "asc")
+    );
+
+
+
+
+    const vehiculosEncontradosBDD = await getDocs(consultaArmada);// llegan datos crudos
+
+    const listaVehiculos = vehiculosEncontradosBDD.docs.map((documento) => ({
+        id: documento.id,
+        ...documento.data()
+    })) as Vehiculo[];
+
+    return listaVehiculos;
+};
+
+export const consulta6 = async (): Promise<Vehiculo[]> => {
+    const consultaArmada = query(
+        collection(db, "vehiculos"),
+        where("precio", ">=", 25000),
+        where("precio", "<=", 45000),
+
+        orderBy("precio", "asc")
+    );
+
+
+
+
+    const vehiculosEncontradosBDD = await getDocs(consultaArmada);// llegan datos crudos
+
+    const listaVehiculos = vehiculosEncontradosBDD.docs.map((documento) => ({
+        id: documento.id,
+        ...documento.data()
+    })) as Vehiculo[];
+
+    return listaVehiculos;
+};
+
+export const consulta7 = async (): Promise<Vehiculo[]> => {
+    const consultaArmada = query(
+        collection(db, "vehiculos"),
+        where("tipo", "==", "Pickup"),
+        where("anio", ">=", 2024),
+        where("stock", ">", 0),
+
+
+        orderBy("anio", "desc")
+    );
+
+
+
+
+    const vehiculosEncontradosBDD = await getDocs(consultaArmada);// llegan datos crudos
+
+    const listaVehiculos = vehiculosEncontradosBDD.docs.map((documento) => ({
+        id: documento.id,
+        ...documento.data()
+    })) as Vehiculo[];
+
+    return listaVehiculos;
+};
+
+
 
 
 

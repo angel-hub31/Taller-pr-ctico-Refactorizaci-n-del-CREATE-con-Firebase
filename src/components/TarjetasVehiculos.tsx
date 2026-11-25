@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaCar, FaCarSide, FaCarAlt, FaTruckPickup } from "react-icons/fa";
-import { consulta1, consulta2, consulta3, consulta4, obtenerVehiculos, type Vehiculo } from "../../scripts/consultaVehiculos";
+import { consulta1, consulta2, consulta3, consulta4, consulta5, consulta6, consulta7, obtenerVehiculos, type Vehiculo } from "../../scripts/consultaVehiculos";
 import "./TarjetasVehiculos.css"
 
 function TarjetasVehiculos() {
@@ -69,6 +69,32 @@ function TarjetasVehiculos() {
             );
         }
 
+
+        if (detalleConsulta === 5) {
+            return (
+                <div className="detalle-consulta">
+                    <h3>Consulta 5 — Reto</h3>
+                </div>
+            );
+        }
+
+        if (detalleConsulta === 6) {
+            return (
+                <div className="detalle-consulta">
+                    <h3>Consulta 6 — Reto</h3>
+                </div>
+            );
+        }
+
+         if (detalleConsulta === 7) {
+            return (
+                <div className="detalle-consulta">
+                    <h3>Consulta 7 — Reto</h3>
+                </div>
+            );
+        }
+
+
         return null;   // por si llega un número que no existe
     };
 
@@ -100,6 +126,12 @@ function TarjetasVehiculos() {
                 <button type="button" className={claseFiltro(2)} onClick={() => ejecutarConsulta(consulta2, 2)}>Consulta 2</button>
                 <button type="button" className={claseFiltro(3)} onClick={() => ejecutarConsulta(consulta3, 3)}>Consulta 3</button>
                 <button type="button" className={claseFiltro(4)} onClick={() => ejecutarConsulta(consulta4, 4)}>Consulta 4</button>
+                <button type="button" className={claseFiltro(5)} onClick={() => ejecutarConsulta(consulta5, 5)}>Consulta 5</button>
+                <button type="button" className={claseFiltro(6)} onClick={() => ejecutarConsulta(consulta6, 6)}>Consulta 6</button>
+                <button type="button" className={claseFiltro(7)} onClick={() => ejecutarConsulta(consulta7, 7)}>Consulta 7</button>
+
+
+
 
             </nav>
 

@@ -1,6 +1,21 @@
 
 // Funciones para manipular documentos y colecciones
-import { collection, addDoc, getDocs, updateDoc, doc, deleteDoc, onSnapshot, query, where, orderBy, getDoc } from "firebase/firestore";
+import {
+    collection,
+    addDoc,
+    getDocs,
+    updateDoc,
+    doc,
+    deleteDoc,
+    onSnapshot,
+    query,
+    where,
+    orderBy,
+    limit,
+    QueryDocumentSnapshot,
+    startAfter,
+    type DocumentData
+} from "firebase/firestore";
 import { db } from "../firebase";// Instancia configurada de la base de datos Firestore
 
 
@@ -102,11 +117,13 @@ export const obtenerProductosDisponibles = async (): Promise<Producto[]> => {
 
     const consulta = query(
         collection(db, "productos"),
+        where("categoria", "==", "tecnologia"),
         where("stock", ">", 0),
         where("precio", ">=", 100),
         where("precio", "<=", 500),
+        orderBy("precio", "asc"),
+        limit(2),
 
-        orderBy("precio", "asc")
     );
 
     const querySnapshot = await getDocs(consulta);
@@ -120,3 +137,36 @@ export const obtenerProductosDisponibles = async (): Promise<Producto[]> => {
 
 };
 
+export const obtenerProductosPaginados = async (
+    ultimoDocumento?: QueryDocumentSnapshot<DocumentData>
+) => {
+    const consulta = ultimoDocumento
+        ? query(
+            collection(db, "productos"),
+            orderBy("precio", "asc"),
+            startAfter(ultimoDocumento),
+            limit(5)
+        )
+        : query(
+            collection(db, "productos"),
+            orderBy("precio", "asc"),
+            limit(5)
+        );
+
+    const snapshot = await getDocs(consulta);
+
+    const productos = snapshot.docs.map((documento) => ({
+        id: documento.id,
+        ...documento.data(),
+    })) as Producto[];
+
+    const nuevoUltimoDoc =
+        snapshot.docs.length > 0
+            ? snapshot.docs[snapshot.docs.length - 1]
+            : undefined;
+
+    return {
+        productos,
+        ultimoDocumento: nuevoUltimoDoc,
+    };
+};

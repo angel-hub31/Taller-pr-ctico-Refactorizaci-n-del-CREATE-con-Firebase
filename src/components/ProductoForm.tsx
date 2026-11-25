@@ -1,5 +1,5 @@
 
-import { useState, type FormEvent } from "react";
+import { useState,useEffect, type FormEvent } from "react";
 
 import {
     crearProducto,
@@ -16,12 +16,26 @@ interface Props {
 
 // Componente para registrar y editar productos
 export function ProductoForm({ productoEditar, onGuardado }: Props) {
-
-    const [nombre, setNombre] = useState(productoEditar?.nombre ?? "");
-    const [precio, setPrecio] = useState(productoEditar?.precio.toString() ?? "");
-    const [stock, setStock] = useState(productoEditar?.stock.toString() ?? "");
-    const [categoria, setCategoria] = useState(productoEditar?.categoria ?? "");
+// Inicializar vacíos y actualizar en `useEffect` (si no, al cambiar de producto a editar no se refrescan)
+    const [nombre, setNombre] = useState("");
+    const [precio, setPrecio] = useState("");
+    const [stock, setStock] = useState("");
+    const [categoria, setCategoria] = useState("");
     const [cargando, setCargando] = useState(false);
+
+    useEffect(() => {
+        if (productoEditar) {
+            setNombre(productoEditar.nombre);
+            setPrecio(String(productoEditar.precio));
+            setStock(String(productoEditar.stock));
+            setCategoria(productoEditar.categoria);
+        } else {
+            setNombre("");
+            setPrecio("");
+            setStock("");
+            setCategoria("");
+        }
+    }, [productoEditar]);
 
     // Función para guardar o actualizar productos
     const guardarProducto = async (e: FormEvent<HTMLFormElement>) => {
@@ -29,6 +43,15 @@ export function ProductoForm({ productoEditar, onGuardado }: Props) {
         e.preventDefault();
 
         if (cargando) return;
+
+
+        const precioNum = Number(precio);
+        const stockNum = Number(stock);
+
+        if (!nombre.trim() || !categoria.trim() || Number.isNaN(precioNum) || Number.isNaN(stockNum)) {
+            alert("Ingresa valores válidos en todos los campos");
+            return;
+        }
 
         setCargando(true);
 
@@ -40,8 +63,8 @@ export function ProductoForm({ productoEditar, onGuardado }: Props) {
                 await actualizarProducto(
                     productoEditar.id,
                     nombre.trim(),
-                    Number(precio),
-                    Number(stock),
+                    precioNum,
+                    stockNum,
                     categoria.trim()
                 );
 
@@ -52,8 +75,8 @@ export function ProductoForm({ productoEditar, onGuardado }: Props) {
                 // Crear un nuevo producto
                 const id = await crearProducto({
                     nombre: nombre.trim(),
-                    precio: Number(precio),
-                    stock: Number(stock),
+                    precio: precioNum,
+                    stock: stockNum,
                     categoria: categoria.trim()
                 });
 

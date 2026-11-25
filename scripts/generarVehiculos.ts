@@ -11,40 +11,46 @@ export interface Vehiculo {
 };
 
 const vehiculos: Vehiculo[] = [
-    // Sedan
-    { marca: "Toyota", modelo: "Corolla", precio: 24500, stock: 8, anio: 2025, tipo: "Sedan" },
-    { marca: "Honda", modelo: "Civic", precio: 27800, stock: 3, anio: 2024, tipo: "Sedan" },
-    { marca: "Mazda", modelo: "Mazda 3", precio: 23900, stock: 12, anio: 2023, tipo: "Sedan" },
-    { marca: "Hyundai", modelo: "Elantra", precio: 22500, stock: 0, anio: 2026, tipo: "Sedan" },
-    { marca: "Nissan", modelo: "Sentra", precio: 19800, stock: 9, anio: 2021, tipo: "Sedan" },
-    { marca: "Kia", modelo: "Cerato", precio: 21000, stock: 6, anio: 2020, tipo: "Sedan" },
 
-    // SUV
-    { marca: "Toyota", modelo: "RAV4", precio: 36500, stock: 7, anio: 2025, tipo: "SUV" },
-    { marca: "Kia", modelo: "Sportage", precio: 32000, stock: 5, anio: 2024, tipo: "SUV" },
-    { marca: "Hyundai", modelo: "Tucson", precio: 36800, stock: 11, anio: 2026, tipo: "SUV" },
-    { marca: "Chevrolet", modelo: "Tracker", precio: 21900, stock: 14, anio: 2023, tipo: "SUV" },
-    { marca: "Ford", modelo: "Explorer", precio: 52000, stock: 0, anio: 2024, tipo: "SUV" },
-    { marca: "Toyota", modelo: "Prado", precio: 58500, stock: 2, anio: 2025, tipo: "SUV" },
+    { marca: "Toyota", modelo: "Corolla", precio: 24500, stock: 8, anio: 2025, tipo: "Deportivo" },
+    { marca: "Honda", modelo: "Civic", precio: 27800, stock: 3, anio: 2024, tipo: "Deportivo" },
+    { marca: "Mazda", modelo: "Mazda 3", precio: 23900, stock: 12, anio: 2023, tipo: "Deportivo" },
+    { marca: "Hyundai", modelo: "Elantra", precio: 22500, stock: 0, anio: 2026, tipo: "Deportivo" },
+    { marca: "Nissan", modelo: "Sentra", precio: 19800, stock: 9, anio: 2021, tipo: "Deportivo" },
+    { marca: "Kia", modelo: "Cerato", precio: 21000, stock: 6, anio: 2020, tipo: "Deportivo" },
 
-    // Pickup
-    { marca: "Ford", modelo: "Ranger", precio: 41000, stock: 0, anio: 2023, tipo: "Pickup" },
-    { marca: "Toyota", modelo: "Hilux", precio: 44500, stock: 6, anio: 2025, tipo: "Pickup" },
-    { marca: "Chevrolet", modelo: "D-Max", precio: 34900, stock: 10, anio: 2022, tipo: "Pickup" },
-    { marca: "Nissan", modelo: "Frontier", precio: 38200, stock: 4, anio: 2024, tipo: "Pickup" },
 
-    // Hatchback
-    { marca: "Chevrolet", modelo: "Onix", precio: 16500, stock: 12, anio: 2022, tipo: "Hatchback" },
-    { marca: "Toyota", modelo: "Yaris", precio: 17800, stock: 18, anio: 2023, tipo: "Hatchback" },
-    { marca: "Kia", modelo: "Picanto", precio: 15200, stock: 20, anio: 2021, tipo: "Hatchback" },
-    { marca: "Suzuki", modelo: "Swift", precio: 18900, stock: 0, anio: 2025, tipo: "Hatchback" },
+    { marca: "Volkswagen", modelo: "Jetta", precio: 25400, stock: 5, anio: 2024, tipo: "Sedan" },
+    { marca: "Chevrolet", modelo: "Onix Plus", precio: 18200, stock: 9, anio: 2023, tipo: "Sedan" },
+    { marca: "Ford", modelo: "Escape", precio: 34500, stock: 4, anio: 2024, tipo: "SUV" },
+    { marca: "Mazda", modelo: "CX-5", precio: 33900, stock: 7, anio: 2025, tipo: "SUV" },
+    { marca: "Nissan", modelo: "Kicks", precio: 22800, stock: 11, anio: 2023, tipo: "SUV" },
+    { marca: "Volkswagen", modelo: "T-Cross", precio: 24900, stock: 6, anio: 2024, tipo: "SUV" },
+    { marca: "Toyota", modelo: "Tacoma", precio: 46800, stock: 3, anio: 2025, tipo: "Pickup" },
+    { marca: "Volkswagen", modelo: "Amarok", precio: 43200, stock: 5, anio: 2024, tipo: "Pickup" },
+    { marca: "Ford", modelo: "Maverick", precio: 31500, stock: 8, anio: 2023, tipo: "Pickup" },
+    { marca: "Volkswagen", modelo: "Polo", precio: 19400, stock: 10, anio: 2024, tipo: "Hatchback" },
+    { marca: "Hyundai", modelo: "i20", precio: 17600, stock: 7, anio: 2022, tipo: "Hatchback" },
+    { marca: "Mazda", modelo: "Mazda 2", precio: 18500, stock: 6, anio: 2023, tipo: "Hatchback" },
+    { marca: "Ford", modelo: "Mustang", precio: 48900, stock: 2, anio: 2025, tipo: "Deportivo" },
+    { marca: "Toyota", modelo: "GR86", precio: 38700, stock: 4, anio: 2024, tipo: "Deportivo" },
+
+
+    { marca: "Hyundai", modelo: "Accent", precio: 17200, stock: 8, anio: 2023, tipo: "Sedan" },
+    { marca: "Kia", modelo: "Seltos", precio: 26400, stock: 5, anio: 2024, tipo: "SUV" },
+    { marca: "Chevrolet", modelo: "Montana", precio: 29800, stock: 4, anio: 2024, tipo: "Pickup" },
+    { marca: "Nissan", modelo: "Versa", precio: 18100, stock: 11, anio: 2023, tipo: "Hatchback" },
+    { marca: "Subaru", modelo: "BRZ", precio: 37900, stock: 2, anio: 2024, tipo: "Deportivo" },
+    { marca: "Honda", modelo: "CR-V", precio: 39500, stock: 6, anio: 2025, tipo: "SUV" },
+    { marca: "Mazda", modelo: "BT-50", precio: 36200, stock: 3, anio: 2023, tipo: "Pickup" },
+
+
 ];
-
 
 export const generarVehiculos = async () => {
 
     for (const vehiculo of vehiculos) {
-        const referenciaVehiculo=await addDoc(collection(db, "vehiculos"), vehiculo)
+        const referenciaVehiculo = await addDoc(collection(db, "vehiculos"), vehiculo)
         console.log("vehiculo registrado con id: ", referenciaVehiculo.id);
     }
     console.log("vehiculos generados exitosamente");
