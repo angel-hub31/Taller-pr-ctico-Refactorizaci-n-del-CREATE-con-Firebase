@@ -8,6 +8,9 @@ import {
 import "./ConsultaCatalogo.css";
 
 export function ConsultaCatalogo() {
+
+    const [modoSeleccionado, setModoSeleccionado] =
+        useState<ModoConsulta>("por_tipo");
     // Estados de controles de filtro
     const [tipoSeleccionado, setTipoSeleccionado] = useState<string>("pelicula");
     const [generoSeleccionado, setGeneroSeleccionado] =
@@ -29,6 +32,14 @@ export function ConsultaCatalogo() {
     const [cargando, setCargando] = useState<boolean>(false);
     const [mensaje, setMensaje] = useState<string>("");
 
+
+    const obtenerValorSegunModo = (modo: ModoConsulta): string => {
+        if (modo === "por_tipo") return tipoSeleccionado;
+        if (modo === "por_genero") return generoSeleccionado;
+        if (modo === "por_id") return idBusqueda.trim();
+        return "";
+    };
+
     const ejecutarConsulta = async (modo: ModoConsulta, valor = "") => {
         setCargando(true);
         setMensaje("");
@@ -42,6 +53,10 @@ export function ConsultaCatalogo() {
 
         try {
             if (modo === "por_id") {
+                if (!valor) {
+                    setMensaje("Ingresa un ID de documento para buscar.");
+                    return;
+                }
                 const docEncontrado = await obtenerContenidoPorId(valor);
                 if (!docEncontrado) {
                     setMensaje(`No se encontró ningún documento con ID "${valor}".`);
@@ -68,6 +83,11 @@ export function ConsultaCatalogo() {
         } finally {
             setCargando(false);
         }
+    };
+
+    const manejarBuscarUnificado = () => {
+        const valor = obtenerValorSegunModo(modoSeleccionado);
+        void ejecutarConsulta(modoSeleccionado, valor);
     };
 
     const manejarSiguiente = async () => {
@@ -134,108 +154,119 @@ export function ConsultaCatalogo() {
 
     return (
         <div className="catalogo-wrapper">
-            {/* Encabezado */}
             <header className="catalogo-header">
                 <h1 className="catalogo-titulo">Catálogo de Películas y Series</h1>
-                <p className="catalogo-subtitulo">
-                    Consulta directa a Cloud Firestore · 10 registros por página
-                </p>
+                
             </header>
 
-            {/* Panel de controles y patrones de acceso */}
+            {/* CAMBIO EN PANEL: se reemplazan las 4 tarjetas con botones individuales por la barra unificada */}
             <section className="panel-controles">
                 <h2 className="panel-titulo">Controles de Consulta</h2>
 
-                <div className="grid-filtros">
-                    <div className="filtro-card">
-                        <label className="filtro-label" htmlFor="select-tipo">
-                            1. Tipo de contenido
+                <div className="barra-unificada">
+                    {/* NUEVO: selector del patrón de acceso */}
+                    <div className="campo-unificado">
+                        <label className="filtro-label" htmlFor="select-patron">
+                            Patrón de consulta
                         </label>
-                        <div className="filtro-acciones">
-                            <select
-                                id="select-tipo"
-                                className="filtro-control"
-                                value={tipoSeleccionado}
-                                onChange={(e) => setTipoSeleccionado(e.target.value)}
-                            >
-                                <option value="pelicula">Película</option>
-                                <option value="serie">Serie</option>
-                            </select>
-                            <button
-                                className="btn btn-primario"
-                                onClick={() => ejecutarConsulta("por_tipo", tipoSeleccionado)}
-                                disabled={cargando}
-                            >
-                                Buscar
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="filtro-card">
-                        <label className="filtro-label" htmlFor="select-genero">
-                            2. Género
-                        </label>
-                        <div className="filtro-acciones">
-                            <select
-                                id="select-genero"
-                                className="filtro-control"
-                                value={generoSeleccionado}
-                                onChange={(e) => setGeneroSeleccionado(e.target.value)}
-                            >
-                                <option value="Ciencia Ficción">Ciencia Ficción</option>
-                                <option value="Drama">Drama</option>
-                                <option value="Acción">Acción</option>
-                                <option value="Terror">Terror</option>
-                                <option value="Animación">Animación</option>
-                                <option value="Comedia">Comedia</option>
-                            </select>
-                            <button
-                                className="btn btn-primario"
-                                onClick={() => ejecutarConsulta("por_genero", generoSeleccionado)}
-                                disabled={cargando}
-                            >
-                                Buscar
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="filtro-card">
-                        <span className="filtro-label">3. Disponibilidad</span>
-                        <button
-                            className="btn btn-secundario"
-                            onClick={() => ejecutarConsulta("disponibles")}
-                            disabled={cargando}
+                        <select
+                            id="select-patron"
+                            className="filtro-control"
+                            value={modoSeleccionado}
+                            onChange={(e) =>
+                                setModoSeleccionado(e.target.value as ModoConsulta)
+                            }
                         >
-                            Ver Disponibles
-                        </button>
+                            <option value="por_tipo">1. Tipo de contenido</option>
+                            <option value="por_genero">2. Género</option>
+                            <option value="disponibles">3. Disponibles</option>
+                            <option value="por_id">4. ID de documento</option>
+                        </select>
                     </div>
 
-                    <div className="filtro-card">
-                        <label className="filtro-label" htmlFor="input-id">
-                            4. ID de documento
-                        </label>
-                        <div className="filtro-acciones">
-                            <input
-                                id="input-id"
-                                type="text"
-                                className="filtro-control"
-                                value={idBusqueda}
-                                onChange={(e) => setIdBusqueda(e.target.value)}
-                                placeholder="Ej: TIT001"
-                            />
-                            <button
-                                className="btn btn-primario"
-                                onClick={() => ejecutarConsulta("por_id", idBusqueda)}
-                                disabled={!idBusqueda.trim() || cargando}
-                            >
-                                Buscar
-                            </button>
-                        </div>
+                    {/* NUEVO: muestra solo el control correspondiente al patrón elegido (sin su botón propio) */}
+                    <div className="campo-unificado">
+                        {modoSeleccionado === "por_tipo" && (
+                            <>
+                                <label className="filtro-label" htmlFor="select-tipo">
+                                    Tipo
+                                </label>
+                                <select
+                                    id="select-tipo"
+                                    className="filtro-control"
+                                    value={tipoSeleccionado}
+                                    onChange={(e) => setTipoSeleccionado(e.target.value)}
+                                >
+                                    <option value="pelicula">Película</option>
+                                    <option value="serie">Serie</option>
+                                </select>
+                            </>
+                        )}
+
+                        {modoSeleccionado === "por_genero" && (
+                            <>
+                                <label className="filtro-label" htmlFor="select-genero">
+                                    Género
+                                </label>
+                                <select
+                                    id="select-genero"
+                                    className="filtro-control"
+                                    value={generoSeleccionado}
+                                    onChange={(e) => setGeneroSeleccionado(e.target.value)}
+                                >
+                                    <option value="Ciencia Ficción">Ciencia Ficción</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Acción">Acción</option>
+                                    <option value="Terror">Terror</option>
+                                    <option value="Animación">Animación</option>
+                                    <option value="Comedia">Comedia</option>
+                                </select>
+                            </>
+                        )}
+
+                        {modoSeleccionado === "disponibles" && (
+                            <>
+                                <span className="filtro-label">Estado</span>
+                                <div className="texto-fijo-filtro">
+                                    Solo títulos disponibles (disponible == true)
+                                </div>
+                            </>
+                        )}
+
+                        {modoSeleccionado === "por_id" && (
+                            <>
+                                <label className="filtro-label" htmlFor="input-id">
+                                    ID del documento
+                                </label>
+                                <input
+                                    id="input-id"
+                                    type="text"
+                                    className="filtro-control"
+                                    value={idBusqueda}
+                                    onChange={(e) => setIdBusqueda(e.target.value)}
+                                    placeholder="Ej: TIT001"
+                                />
+                            </>
+                        )}
+                    </div>
+
+                    {/* NUEVO: botón único que ejecuta cualquiera de los 4 patrones */}
+                    <div className="campo-boton">
+                        <button
+                            type="button"
+                            className="btn btn-primario btn-buscar-unico"
+                            onClick={manejarBuscarUnificado}
+                            disabled={
+                                cargando || (modoSeleccionado === "por_id" && !idBusqueda.trim())
+                            }
+                        >
+                            Buscar
+                        </button>
                     </div>
                 </div>
             </section>
 
-            {/* Área principal de resultados */}
+            {/* Tabla y paginación: sin cambios */}
             <main>
                 {cargando && <p className="estado-mensaje">Consultando Firestore...</p>}
                 {mensaje && <p className="estado-mensaje">{mensaje}</p>}
@@ -285,7 +316,6 @@ export function ConsultaCatalogo() {
                 )}
             </main>
 
-            {/* Barra de navegación Anterior / Siguiente */}
             <nav className="paginacion-barra">
                 <span className="paginacion-indicador">Página {paginaActual}</span>
                 <div className="paginacion-botones">

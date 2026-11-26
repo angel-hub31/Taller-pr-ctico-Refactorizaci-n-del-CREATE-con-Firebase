@@ -277,3 +277,55 @@
     min-height: 100vh;
     background-color: var(--bg-canvas);
 }
+
+/* NUEVO: fila de 3 columnas (Patrón | Control | Botón Buscar) */
+.barra-unificada {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(220px, 1.2fr) auto;
+    gap: 14px;
+    align-items: end;
+    background-color: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+/* NUEVO: contenedor vertical de label + input/select */
+.campo-unificado {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+/* NUEVO: cuadro informativo cuando se elige "3. Disponibles" */
+.texto-fijo-filtro {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px dashed var(--border-subtle);
+    background-color: var(--bg-canvas);
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+}
+
+/* NUEVO: alineación del botón único */
+.campo-boton {
+    display: flex;
+    align-items: flex-end;
+}
+
+.btn-buscar-unico {
+    padding: 9px 22px;
+}
+
+/* NUEVO: apila en 1 columna en pantallas pequeñas */
+@media (max-width: 760px) {
+    .barra-unificada {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .btn-buscar-unico {
+        width: 100%;
+    }
+}
