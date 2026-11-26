@@ -1,0 +1,279 @@
+/* Paleta oscura minimalista de alto contraste */
+:root {
+    --bg-canvas: #0b0f17;
+    --bg-surface: #121826;
+    --bg-surface-elevated: #182234;
+    --bg-hover: #1e2b42;
+    --border-subtle: #243044;
+    --border-focus: #38bdf8;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --accent-primary: #38bdf8;
+    --accent-primary-text: #06131d;
+    --badge-ok-bg: rgba(16, 185, 129, 0.14);
+    --badge-ok-text: #34d399;
+    --badge-no-bg: rgba(248, 113, 113, 0.14);
+    --badge-no-text: #f87171;
+}
+
+.catalogo-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 28px 20px 48px;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Encabezado */
+.catalogo-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 24px;
+}
+
+.catalogo-titulo {
+    margin: 0;
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.catalogo-subtitulo {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Panel de filtros */
+.panel-controles {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.panel-titulo {
+    margin: 0 0 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+}
+
+.grid-filtros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+}
+
+.filtro-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.filtro-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.filtro-acciones {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.filtro-control {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.filtro-control:focus {
+    border-color: var(--border-focus);
+}
+
+/* Botones minimalistas */
+.btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn-primario {
+    background-color: var(--accent-primary);
+    color: var(--accent-primary-text);
+}
+
+.btn-primario:hover:not(:disabled) {
+    filter: brightness(1.08);
+}
+
+.btn-secundario {
+    width: 100%;
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+}
+
+.btn-secundario:hover:not(:disabled) {
+    background-color: var(--bg-hover);
+    border-color: var(--accent-primary);
+}
+
+/* Mensajes de estado */
+.estado-mensaje {
+    margin: 0 0 18px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Tabla HTML responsiva */
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+}
+
+.tabla-catalogo {
+    width: 100%;
+    min-width: 780px;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.88rem;
+}
+
+.tabla-catalogo thead {
+    background-color: var(--bg-surface-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.tabla-catalogo th {
+    padding: 12px 14px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.tabla-catalogo td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+.tabla-catalogo tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-catalogo tbody tr:hover {
+    background-color: var(--bg-hover);
+}
+
+.celda-id {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+}
+
+.celda-titulo {
+    font-weight: 600;
+}
+
+.badge-estado {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.badge-si {
+    background-color: var(--badge-ok-bg);
+    color: var(--badge-ok-text);
+}
+
+.badge-no {
+    background-color: var(--badge-no-bg);
+    color: var(--badge-no-text);
+}
+
+/* Paginación */
+.paginacion-barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.paginacion-indicador {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.paginacion-botones {
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 600px) {
+    .catalogo-wrapper {
+        padding: 18px 14px 36px;
+    }
+
+    .catalogo-titulo {
+        font-size: 1.35rem;
+    }
+}
+
+.app-shell {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-canvas);
+}

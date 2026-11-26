@@ -1,8 +1,11 @@
-import VehiculoListaPaginada from "./components/VehiculoListaPaginada";
+import { ConsultaCatalogo } from "./components/ConsultaCatalogo";
 
-function App() {
-  return <VehiculoListaPaginada />;
+export function App() {
+  return (
+    <div className="app-shell">
+      <ConsultaCatalogo />
+    </div>
+  );
 }
 
 export default App;
-
