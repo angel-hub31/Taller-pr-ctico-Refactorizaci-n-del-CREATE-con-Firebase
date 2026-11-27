@@ -186,11 +186,6 @@ export function ConsultaCatalogo() {
                         </select>
 
 
-
-
-
-
-
                     </div>
 
                     {/* NUEVO: muestra solo el control correspondiente al patrón elegido (sin su botón propio) */}
