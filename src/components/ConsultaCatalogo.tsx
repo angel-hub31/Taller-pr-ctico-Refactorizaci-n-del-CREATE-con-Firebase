@@ -9,22 +9,21 @@ import "./ConsultaCatalogo.css";
 
 export function ConsultaCatalogo() {
 
-    const [modoSeleccionado, setModoSeleccionado] =
-        useState<ModoConsulta>("por_tipo");
+    const [modoSeleccionado, setModoSeleccionado] = useState<ModoConsulta>("por_tipo");
     // Estados de controles de filtro
     const [tipoSeleccionado, setTipoSeleccionado] = useState<string>("pelicula");
-    const [generoSeleccionado, setGeneroSeleccionado] =
-        useState<string>("Ciencia Ficción");
+    const [generoSeleccionado, setGeneroSeleccionado] = useState<string>("Ciencia Ficción");
+    const [ calificacionMinima,setCalificacionMinima]= useState<string>("7")
+
+
     const [idBusqueda, setIdBusqueda] = useState<string>("TIT001");
 
     // Estado de consulta activa y paginación basada en cursores
     const [modoActual, setModoActual] = useState<ModoConsulta>("por_tipo");
     const [valorFiltroActual, setValorFiltroActual] = useState<string>("pelicula");
     const [resultados, setResultados] = useState<ContenidoCatalogo[]>([]);
-    const [primerDoc, setPrimerDoc] =
-        useState<QueryDocumentSnapshot<DocumentData> | null>(null);
-    const [ultimoDoc, setUltimoDoc] =
-        useState<QueryDocumentSnapshot<DocumentData> | null>(null);
+    const [primerDoc, setPrimerDoc] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
+    const [ultimoDoc, setUltimoDoc] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
     const [paginaActual, setPaginaActual] = useState<number>(1);
     const [haySiguiente, setHaySiguiente] = useState<boolean>(false);
 
@@ -36,6 +35,7 @@ export function ConsultaCatalogo() {
     const obtenerValorSegunModo = (modo: ModoConsulta): string => {
         if (modo === "por_tipo") return tipoSeleccionado;
         if (modo === "por_genero") return generoSeleccionado;
+        if (modo === "por_calificacion") return calificacionMinima;
         if (modo === "por_id") return idBusqueda.trim();
         return "";
     };
@@ -156,7 +156,7 @@ export function ConsultaCatalogo() {
         <div className="catalogo-wrapper">
             <header className="catalogo-header">
                 <h1 className="catalogo-titulo">Catálogo de Películas y Series</h1>
-                
+
             </header>
 
             {/* CAMBIO EN PANEL: se reemplazan las 4 tarjetas con botones individuales por la barra unificada */}
@@ -181,7 +181,16 @@ export function ConsultaCatalogo() {
                             <option value="por_genero">2. Género</option>
                             <option value="disponibles">3. Disponibles</option>
                             <option value="por_id">4. ID de documento</option>
+                            <option value = "por_calificacion">5. Por Calificacion </option>
+
                         </select>
+
+
+
+
+
+
+
                     </div>
 
                     {/* NUEVO: muestra solo el control correspondiente al patrón elegido (sin su botón propio) */}
@@ -224,6 +233,8 @@ export function ConsultaCatalogo() {
                             </>
                         )}
 
+
+
                         {modoSeleccionado === "disponibles" && (
                             <>
                                 <span className="filtro-label">Estado</span>
@@ -242,13 +253,36 @@ export function ConsultaCatalogo() {
                                     id="input-id"
                                     type="text"
                                     className="filtro-control"
-                                    value={idBusqueda}
-                                    onChange={(e) => setIdBusqueda(e.target.value)}
+                                    value={calificacionMinima}
+                                    onChange={(e) => setCalificacionMinima(e.target.value)}
                                     placeholder="Ej: TIT001"
                                 />
                             </>
                         )}
+
+
+
+                            {modoSeleccionado === "por_calificacion" && (
+                            <>
+                                <label className="filtro-label" htmlFor="select-calificcacion">
+                                    Calificacion
+                                </label>
+                                <input
+                                    id="select-calificacion"
+                                    type="text"
+                                    className="filtro-control"
+                                    value={calificacionMinima}
+                                    onChange={(e) => setCalificacionMinima(e.target.value)}
+                                />
+                            </>
+                        )}
+
+
+
+
+
                     </div>
+
 
                     {/* NUEVO: botón único que ejecuta cualquiera de los 4 patrones */}
                     <div className="campo-boton">
@@ -295,6 +329,7 @@ export function ConsultaCatalogo() {
                                         <td>{item.genero}</td>
                                         <td>{item.anioEstreno}</td>
                                         <td>{item.calificacion}</td>
+
                                         <td>
                                             <span
                                                 className={`badge-estado ${item.disponible ? "badge-si" : "badge-no"
